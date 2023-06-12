@@ -1,8 +1,18 @@
 import * as http from "https://deno.land/std@0.191.0/http/server.ts";
+import * as path from "https://deno.land/std@0.191.0/path/mod.ts";
 import { decode } from "https://esm.sh/@msgpack/msgpack@2.8.0/mod.ts";
 
-const binPath =
-  "/home/mks/projects/isone2/src/node_rpc_rust/rust/target/release/simple_rpc";
+const currentDirName = path.dirname(new URL(import.meta.url).pathname);
+
+const binPath = path.join(
+  currentDirName,
+  "..",
+  "..",
+  "rust",
+  "target",
+  "release",
+  "simple_rpc"
+);
 
 const child = new Deno.Command(binPath, {
   stdin: "piped",
