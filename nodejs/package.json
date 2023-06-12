@@ -1,0 +1,42 @@
+{
+  "name": "type_script4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "packageManager": "pnpm@8.6.1",
+  "scripts": {
+    "clean": "npx rimraf ./dist/**/*",
+    "build": "npx tsc",
+    "build:watch": "npx tsc -w",
+    "test": "ava"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "18.16.0",
+    "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "ava": "^5.2.0",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "ava": {
+    "files": [
+      "./dist/test/*.test.js",
+      "./dist/test/**/*.test.js"
+    ],
+    "failFast": true,
+    "verbose": true
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "3.0.0-beta2",
+    "uuid": "^9.0.0"
+  }
+}
