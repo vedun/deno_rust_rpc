@@ -27,12 +27,25 @@ function getBuf() {
   return new Uint8Array(buf);
 }
 
+// const n = 8;
+// const values = new Array<number>(n);
+// values.fill(0);
+// let i = 0;
+
 async function handler(req: Request): Promise<Response> {
   const data = { name: "1111111", age: 23 };
+  // const start = performance.now();
   await writer.write(new Uint8Array([0, 0, 0, 1, 128]));
   const buf = getBuf();
   await reader.read(buf);
   decode(new Uint8Array([128]));
+  // const stop = performance.now();
+  // values[i] = stop - start;
+  // i++;
+  // i = i % n;
+  // const average =
+  //   values.reduce((prev, current) => prev + current, 0) / values.length;
+  // console.log(`latency: ${average}`);
   return Response.json(data);
 }
 
