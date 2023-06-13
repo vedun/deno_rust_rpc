@@ -3,5 +3,6 @@
   "editor.detectIndentation": false,
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": false,
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "git.openRepositoryInParentFolders": "always"
 }
