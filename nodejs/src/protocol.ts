@@ -1,4 +1,3 @@
-import { Readable, Writable } from 'node:stream';
 import { numberToTuple, numberFromTuple } from './number.js';
 
 export function createPacket(data: Uint8Array): Uint8Array {
@@ -12,30 +11,10 @@ export function createPacket(data: Uint8Array): Uint8Array {
   return retValue;
 }
 
-export async function writePacket(stream: Writable, data: Uint8Array): Promise<void> {
-  const packetData = createPacket(data);
-  const p = new Promise((resolve, reject) => {
-    const result = stream.write(packetData);
-    if (result === false) {
-      stream.once('drain', resolve);
-      return;
-    }
-    return resolve(undefined);
-  });
-  await p;
-}
-
-export async function readPacket(stream: Readable): Promise<Uint8Array> {
-  const readBuf = new Uint8Array(2048);
-  let currentPos = 0;
-  let packetLength = 0;
-  for await (const chunk_ of stream) {
-    const chunk = chunk_ as Uint8Array;
-    readBuf.set(chunk, currentPos);
-    currentPos += chunk.byteLength;
-    if (currentPos >= 4) {
-      packetLength = numberFromTuple([readBuf[0], readBuf[1], readBuf[2], readBuf[3]]);
-    }
-  }
-  throw new Error('!!!!!!!!!!!!!!');
+export function extractData(packet: Uint8Array): Uint8Array {
+  const header = new Uint8Array(packet.buffer, 0, 4);
+  const len = numberFromTuple([header[0], header[1], header[2], header[3]]);
+  if (len > packet.byteLength) throw new Error('packet length is greater then body');
+  const body = new Uint8Array(packet.buffer, 4, len);
+  return body;
 }
