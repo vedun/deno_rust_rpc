@@ -3,6 +3,8 @@
   "editor.detectIndentation": false,
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": false,
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "git.openRepositoryInParentFolders": "always"
+  // "typescript.tsdk": "./node_modules/typescript/lib",
+  "git.openRepositoryInParentFolders": "always",
+  "cmake.sourceDirectory": "/home/mks/projects/isone2/src/deno_rust_rpc/nodejs/packages/addon",
+  "cmake.configureOnOpen": false
 }

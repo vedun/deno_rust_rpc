@@ -1,0 +1,30 @@
+{
+  "name": "addon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "type": "commonjs",
+  "private": true,
+  "packageManager": "pnpm@8.6.2",
+  "scripts": {
+    "build": "cmake-js install && cmake-js configure && cmake-js compile",
+    "test": "node hello.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "cmake-js": {
+    "runtime": "node",
+    "runtimeVersion": "18.16.0",
+    "arch": "x64"
+  },
+  "devDependencies": {
+    "cmake-js": "^7.2.1",
+    "node-gyp": "^9.4.0",
+    "typescript": "~5.0.4"
+  },
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "node-addon-api": "^1.0.0"
+  }
+}
